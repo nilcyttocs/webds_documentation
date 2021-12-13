@@ -6,29 +6,29 @@ import {
 import { ILauncher } from '@jupyterlab/launcher';
 
 import {
-  touchcommIcon,
-  asicprogrammerIcon
+  touchcommDocIcon,
+  asicprogrammerDocIcon
 } from './icons';
 
 const touchcommDoc = 'Synaptics/Documentation/User_Guides/TouchComm/TouchComm_User_Guide';
 const asicprogrammerDoc = 'Synaptics/Documentation/User_Guides/AsicProgrammer/AsicProgrammer_User_Guide'
 
 /**
- * Initialization data for the webds_documentation extension.
+ * Initialization data for the @webds/documentation extension.
  */
 const touchcomm: JupyterFrontEndPlugin<void> = {
-  id: 'webds_documentation:touchcomm',
+  id: '@webds/documentation:touchcomm',
   autoStart: true,
   requires: [ILauncher],
   activate: (app: JupyterFrontEnd, launcher: ILauncher) => {
-    console.log('JupyterLab plugin webds_documentation:touchcomm is activated!');
+    console.log('JupyterLab plugin @webds/documentation:touchcomm is activated!');
 
     const { commands, shell } = app;
     const command: string = 'webds_documentation_touchcomm:open';
     commands.addCommand(command, {
       label: 'TouchComm User Guide',
       caption: 'TouchComm User Guide',
-      icon: args => (args['isLauncher'] ? touchcommIcon : undefined),
+      icon: args => (args['isLauncher'] ? touchcommDocIcon : undefined),
       execute: async () => {
         commands.execute('docmanager:open', {
           path: touchcommDoc,
@@ -38,7 +38,7 @@ const touchcomm: JupyterFrontEndPlugin<void> = {
           }
         })
         .then((widget) => {
-          widget.id = 'webds_touchcomm_user_guide';
+          widget.id = 'webds_touchcomm_user_guide_widget';
           widget.title.closable = true;
           if (!widget.isAttached)
             shell.add(widget, 'main');
@@ -52,18 +52,18 @@ const touchcomm: JupyterFrontEndPlugin<void> = {
 };
 
 const asicprogrammer: JupyterFrontEndPlugin<void> = {
-  id: 'webds_documentation:asicprogrammer',
+  id: '@webds/documentation:asicprogrammer',
   autoStart: true,
   requires: [ILauncher],
   activate: (app: JupyterFrontEnd, launcher: ILauncher) => {
-    console.log('JupyterLab plugin webds_documentation:asicprogrammer is activated!');
+    console.log('JupyterLab plugin @webds/documentation:asicprogrammer is activated!');
 
     const { commands, shell } = app;
     const command: string = 'webds_documentation_asicprogrammer:open';
     commands.addCommand(command, {
       label: 'AsicProgrammer User Guide',
       caption: 'AsicProgrammer User Guide',
-      icon: args => (args['isLauncher'] ? asicprogrammerIcon : undefined),
+      icon: args => (args['isLauncher'] ? asicprogrammerDocIcon : undefined),
       execute: async () => {
         commands.execute('docmanager:open', {
           path: asicprogrammerDoc,
@@ -73,7 +73,7 @@ const asicprogrammer: JupyterFrontEndPlugin<void> = {
           }
         })
         .then((widget) => {
-          widget.id = 'webds_asicprogrammer_user_guide';
+          widget.id = 'webds_asicprogrammer_user_guide_widget';
           widget.title.closable = true;
           if (!widget.isAttached)
             shell.add(widget, 'main');
