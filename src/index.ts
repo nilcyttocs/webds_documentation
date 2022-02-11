@@ -7,11 +7,13 @@ import { ILauncher } from '@jupyterlab/launcher';
 
 import {
   touchcommDocIcon,
-  asicprogrammerDocIcon
+  asicprogrammerDocIcon,
+  confluenceDocIcon
 } from './icons';
 
 const touchcommDoc = 'Synaptics/Documentation/User_Guides/TouchComm/TouchComm_User_Guide';
-const asicprogrammerDoc = 'Synaptics/Documentation/User_Guides/AsicProgrammer/AsicProgrammer_User_Guide'
+const asicprogrammerDoc = 'Synaptics/Documentation/User_Guides/AsicProgrammer/AsicProgrammer_User_Guide';
+const confluenceDoc = 'https://confluence.synaptics.com/display/PRJRN/Desk+Side+Development+Kit';
 
 /**
  * Initialization data for the @webds/documentation extension.
@@ -86,4 +88,26 @@ const asicprogrammer: JupyterFrontEndPlugin<void> = {
   }
 };
 
-export default [touchcomm, asicprogrammer];
+const confluence: JupyterFrontEndPlugin<void> = {
+  id: '@webds/documentation:confluence',
+  autoStart: true,
+  requires: [ILauncher],
+  activate: (app: JupyterFrontEnd, launcher: ILauncher) => {
+    console.log('JupyterLab plugin @webds/documentation:confluence is activated!');
+
+    const { commands } = app;
+    const command: string = 'webds_documentation_confluence:open';
+    commands.addCommand(command, {
+      label: 'DSDK Confluence',
+      caption: 'DSDK Confluence',
+      icon: args => (args['isLauncher'] ? confluenceDocIcon : undefined),
+      execute: () => {
+        window.open(confluenceDoc, '_blank')?.focus();
+      },
+    });
+
+    launcher.add({ command, args: { isLauncher: true }, category: 'WebDS_Documentation', rank: 2 });
+  }
+};
+
+export default [touchcomm, asicprogrammer, confluence];
