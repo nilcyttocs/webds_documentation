@@ -49,7 +49,7 @@ const touchcomm: JupyterFrontEndPlugin<void> = {
       },
     });
 
-    launcher.add({command, args: {isLauncher: true}, category: 'WebDS_Documentation', rank: 2});
+    launcher.add({command, args: {isLauncher: true}, category: 'DSDK - Documentation', rank: 2});
   }
 };
 
@@ -82,7 +82,7 @@ const asicprogrammer: JupyterFrontEndPlugin<void> = {
       },
     });
 
-    launcher.add({command, args: {isLauncher: true}, category: 'WebDS_Documentation', rank: 3});
+    launcher.add({command, args: {isLauncher: true}, category: 'DSDK - Documentation', rank: 3});
   }
 };
 
@@ -104,7 +104,7 @@ const confluence: JupyterFrontEndPlugin<void> = {
       },
     });
 
-    launcher.add({command, args: {isLauncher: true}, category: 'WebDS_Documentation', rank: 0});
+    launcher.add({command, args: {isLauncher: true}, category: 'DSDK - Documentation', rank: 0});
   }
 };
 
@@ -126,7 +126,7 @@ const jira: JupyterFrontEndPlugin<void> = {
       },
     });
 
-    launcher.add({command, args: {isLauncher: true}, category: 'WebDS_Documentation', rank: 1});
+    launcher.add({command, args: {isLauncher: true}, category: 'DSDK - Documentation', rank: 1});
   }
 };
 
