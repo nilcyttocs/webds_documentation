@@ -47,7 +47,8 @@
   "dependencies": {
     "@jupyterlab/application": "3.4.5",
     "@jupyterlab/launcher": "3.4.5",
-    "@jupyterlab/ui-components": "3.4.5"
+    "@jupyterlab/ui-components": "3.4.5",
+    "@webds/service": "file:../webds_service"
   },
   "devDependencies": {
     "@jupyterlab/builder": "^3.1.0",
@@ -71,7 +72,13 @@
   },
   "jupyterlab": {
     "extension": true,
-    "outputDir": "webds_documentation/labextension"
+    "outputDir": "webds_documentation/labextension",
+    "sharedPackages": {
+      "@webds/service": {
+        "bundled": false,
+        "singleton": true
+      }
+    }
   },
   "jupyter-releaser": {
     "hooks": {

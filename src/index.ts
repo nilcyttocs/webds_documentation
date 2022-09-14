@@ -3,7 +3,11 @@ import {
   JupyterFrontEndPlugin
 } from "@jupyterlab/application";
 
+import { MainAreaWidget } from "@jupyterlab/apputils";
+
 import { ILauncher } from "@jupyterlab/launcher";
+
+import { WebDSService } from "@webds/service";
 
 import {
   touchcommDocIcon,
@@ -28,18 +32,27 @@ namespace ConfluenceAttributes {
 const confluence: JupyterFrontEndPlugin<void> = {
   id: "@webds/documentation:confluence",
   autoStart: true,
-  requires: [ILauncher],
-  activate: (app: JupyterFrontEnd, launcher: ILauncher) => {
-    console.log(
-      "JupyterLab plugin @webds/documentation:confluence is activated!"
-    );
+  requires: [ILauncher, WebDSService],
+  activate: (
+    app: JupyterFrontEnd,
+    launcher: ILauncher,
+    service: WebDSService
+  ) => {
+    if (service.pinormos.isExternal()) {
+      return;
+    } else {
+      console.log(
+        "JupyterLab plugin @webds/documentation:confluence is activated!"
+      );
+    }
 
     const { commands } = app;
     const command = ConfluenceAttributes.command;
     commands.addCommand(command, {
       label: ConfluenceAttributes.label,
       caption: ConfluenceAttributes.caption,
-      icon: (args) => (args["isLauncher"] ? confluenceDocIcon : undefined),
+      icon: (args: { [x: string]: any }) =>
+        args["isLauncher"] ? confluenceDocIcon : undefined,
       execute: () => {
         window.open(ConfluenceAttributes.link, "_blank")?.focus();
       }
@@ -65,16 +78,25 @@ namespace JiraAttributes {
 const jira: JupyterFrontEndPlugin<void> = {
   id: "@webds/documentation:jira",
   autoStart: true,
-  requires: [ILauncher],
-  activate: (app: JupyterFrontEnd, launcher: ILauncher) => {
-    console.log("JupyterLab plugin @webds/documentation:jira is activated!");
+  requires: [ILauncher, WebDSService],
+  activate: (
+    app: JupyterFrontEnd,
+    launcher: ILauncher,
+    service: WebDSService
+  ) => {
+    if (service.pinormos.isExternal()) {
+      return;
+    } else {
+      console.log("JupyterLab plugin @webds/documentation:jira is activated!");
+    }
 
     const { commands } = app;
     const command = JiraAttributes.command;
     commands.addCommand(command, {
       label: JiraAttributes.label,
       caption: JiraAttributes.caption,
-      icon: (args) => (args["isLauncher"] ? jiraDocIcon : undefined),
+      icon: (args: { [x: string]: any }) =>
+        args["isLauncher"] ? jiraDocIcon : undefined,
       execute: () => {
         window.open(JiraAttributes.link, "_blank")?.focus();
       }
@@ -113,7 +135,8 @@ const touchcomm: JupyterFrontEndPlugin<void> = {
     commands.addCommand(command, {
       label: TouchCommAttributes.label,
       caption: TouchCommAttributes.caption,
-      icon: (args) => (args["isLauncher"] ? touchcommDocIcon : undefined),
+      icon: (args: { [x: string]: any }) =>
+        args["isLauncher"] ? touchcommDocIcon : undefined,
       execute: async () => {
         commands
           .execute("docmanager:open", {
@@ -121,7 +144,7 @@ const touchcomm: JupyterFrontEndPlugin<void> = {
             factory: "HTML Viewer",
             options: { mode: "split-right" }
           })
-          .then((widget) => {
+          .then((widget: MainAreaWidget) => {
             widget.id = TouchCommAttributes.id;
             widget.title.closable = true;
             if (!widget.isAttached) shell.add(widget, "main");
@@ -152,18 +175,27 @@ namespace AsicProgrammerAttributes {
 const asicprogrammer: JupyterFrontEndPlugin<void> = {
   id: "@webds/documentation:asicprogrammer",
   autoStart: true,
-  requires: [ILauncher],
-  activate: (app: JupyterFrontEnd, launcher: ILauncher) => {
-    console.log(
-      "JupyterLab plugin @webds/documentation:asicprogrammer is activated!"
-    );
+  requires: [ILauncher, WebDSService],
+  activate: (
+    app: JupyterFrontEnd,
+    launcher: ILauncher,
+    service: WebDSService
+  ) => {
+    if (service.pinormos.isExternal()) {
+      return;
+    } else {
+      console.log(
+        "JupyterLab plugin @webds/documentation:asicprogrammer is activated!"
+      );
+    }
 
     const { commands, shell } = app;
     const command = AsicProgrammerAttributes.command;
     commands.addCommand(command, {
       label: AsicProgrammerAttributes.label,
       caption: AsicProgrammerAttributes.caption,
-      icon: (args) => (args["isLauncher"] ? asicprogrammerDocIcon : undefined),
+      icon: (args: { [x: string]: any }) =>
+        args["isLauncher"] ? asicprogrammerDocIcon : undefined,
       execute: async () => {
         commands
           .execute("docmanager:open", {
@@ -171,7 +203,7 @@ const asicprogrammer: JupyterFrontEndPlugin<void> = {
             factory: "HTML Viewer",
             options: { mode: "split-right" }
           })
-          .then((widget) => {
+          .then((widget: MainAreaWidget) => {
             widget.id = AsicProgrammerAttributes.id;
             widget.title.closable = true;
             if (!widget.isAttached) shell.add(widget, "main");
