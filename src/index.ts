@@ -33,11 +33,13 @@ const confluence: JupyterFrontEndPlugin<void> = {
   id: "@webds/documentation:confluence",
   autoStart: true,
   requires: [ILauncher, WebDSService],
-  activate: (
+  activate: async (
     app: JupyterFrontEnd,
     launcher: ILauncher,
     service: WebDSService
   ) => {
+    await service.initialized;
+
     if (service.pinormos.isExternal()) {
       return;
     } else {
@@ -79,11 +81,13 @@ const jira: JupyterFrontEndPlugin<void> = {
   id: "@webds/documentation:jira",
   autoStart: true,
   requires: [ILauncher, WebDSService],
-  activate: (
+  activate: async (
     app: JupyterFrontEnd,
     launcher: ILauncher,
     service: WebDSService
   ) => {
+    await service.initialized;
+
     if (service.pinormos.isExternal()) {
       return;
     } else {
@@ -176,11 +180,13 @@ const asicprogrammer: JupyterFrontEndPlugin<void> = {
   id: "@webds/documentation:asicprogrammer",
   autoStart: true,
   requires: [ILauncher, WebDSService],
-  activate: (
+  activate: async (
     app: JupyterFrontEnd,
     launcher: ILauncher,
     service: WebDSService
   ) => {
+    await service.initialized;
+
     if (service.pinormos.isExternal()) {
       return;
     } else {
