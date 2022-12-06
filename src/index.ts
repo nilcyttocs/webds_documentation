@@ -33,7 +33,7 @@ const confluence: JupyterFrontEndPlugin<void> = {
   id: "@webds/documentation:confluence",
   autoStart: true,
   requires: [ILauncher, WebDSService],
-  activate: async (
+  activate: (
     app: JupyterFrontEnd,
     launcher: ILauncher,
     service: WebDSService
@@ -79,7 +79,7 @@ const jira: JupyterFrontEndPlugin<void> = {
   id: "@webds/documentation:jira",
   autoStart: true,
   requires: [ILauncher, WebDSService],
-  activate: async (
+  activate: (
     app: JupyterFrontEnd,
     launcher: ILauncher,
     service: WebDSService
@@ -176,7 +176,7 @@ const asicprogrammer: JupyterFrontEndPlugin<void> = {
   id: "@webds/documentation:asicprogrammer",
   autoStart: true,
   requires: [ILauncher, WebDSService],
-  activate: async (
+  activate: (
     app: JupyterFrontEnd,
     launcher: ILauncher,
     service: WebDSService
