@@ -38,8 +38,6 @@ const confluence: JupyterFrontEndPlugin<void> = {
     launcher: ILauncher,
     service: WebDSService
   ) => {
-    await service.initialized;
-
     if (service.pinormos.isExternal()) {
       return;
     } else {
@@ -86,8 +84,6 @@ const jira: JupyterFrontEndPlugin<void> = {
     launcher: ILauncher,
     service: WebDSService
   ) => {
-    await service.initialized;
-
     if (service.pinormos.isExternal()) {
       return;
     } else {
@@ -185,8 +181,6 @@ const asicprogrammer: JupyterFrontEndPlugin<void> = {
     launcher: ILauncher,
     service: WebDSService
   ) => {
-    await service.initialized;
-
     if (service.pinormos.isExternal()) {
       return;
     } else {
