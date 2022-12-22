@@ -1,6 +1,6 @@
 {
   "name": "@webds/documentation",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "webds_documentation",
   "keywords": [
     "jupyter",
@@ -45,10 +45,6 @@
     "watch:labextension": "jupyter labextension watch ."
   },
   "dependencies": {
-    "@jupyterlab/application": "3.1.13",
-    "@jupyterlab/launcher": "3.1.13",
-    "@jupyterlab/ui-components": "3.1.13",
-    "@webds/service": "file:../webds_service"
   },
   "devDependencies": {
     "@jupyterlab/builder": "^3.1.0",
